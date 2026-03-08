@@ -1,43 +1,148 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>블럭게임</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="css/tetris.css">
-    <script type="text/javascript" src="js/tetris.js"></script>
-  </head>
-  <body>
-    <h1>블럭게임/h1>
-    <div class="wrapper-container">
-        <span class="tetris-container">
-            <canvas id="stage" width="250px" height="500px" style="background-color:black;">
-            </canvas>
-            <span class="tetris-panel-container">
-              <p>Next:</p>
-                <canvas id="next" width="150px" height="150px" style="background-color:black;">
-                </canvas>
-              <p>LINES:<span id="lines">0</span></p>
-              <p><span id="message"></span></p>
-              <div class="tetris-panel-container-padding"></div>
-              <table class="tetris-button-panel">
-                <tr>
-                  <td></td>
-                  <td id="tetris-rotate-button" class="tetris-button">↻</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td id="tetris-move-left-button"class="tetris-button">←</td>
-                  <td id="tetris-fall-button"class="tetris-button">↓</td>
-                  <td id="tetris-move-right-button"class="tetris-button">→</td>
-                </tr>
-              </table>
-            </span>
-        </span>
-    </div>
-    <script>
-      var tetris = new Tetris();
-      tetris.startGame();
-    </script>
-  </body>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>귀염뽀짝 산리오 감성</title>
+
+<style>
+
+body{
+    margin:0;
+    height:100vh;
+    overflow:hidden;
+    font-family: "Arial", sans-serif;
+    background: linear-gradient(180deg,#ffddee,#fff4f8);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* 카드 */
+
+.card{
+    position:relative;
+    background:white;
+    padding:40px;
+    border-radius:30px;
+    text-align:center;
+    width:320px;
+    box-shadow:0 15px 30px rgba(255,150,180,0.3);
+    z-index:2;
+}
+
+.title{
+    font-size:30px;
+    color:#ff6fa5;
+    font-weight:bold;
+}
+
+.subtitle{
+    margin-top:10px;
+    color:#888;
+}
+
+/* 귀여운 버튼 */
+
+button{
+    margin-top:25px;
+    background:#ff9fc4;
+    border:none;
+    padding:12px 25px;
+    border-radius:50px;
+    font-size:16px;
+    color:white;
+    cursor:pointer;
+    box-shadow:0 5px 15px rgba(255,150,180,0.4);
+    transition:all .2s;
+}
+
+button:hover{
+    transform:scale(1.1);
+    background:#ff7fb2;
+}
+
+/* 캐릭터 */
+
+.character{
+    font-size:55px;
+    animation:bounce 2s infinite;
+}
+
+@keyframes bounce{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-10px)}
+}
+
+/* 벚꽃 */
+
+.sakura{
+    position:fixed;
+    top:-10px;
+    font-size:20px;
+    animation:fall linear forwards;
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(110vh) rotate(360deg);
+        opacity:0.8;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<div class="character">🐰🎀</div>
+
+<div class="title">귀염뽀짝 월드</div>
+
+<div class="subtitle">
+오늘도 행복한 하루 💗
+</div>
+
+<button onclick="cute()">눌러봐!</button>
+
+</div>
+
+<script>
+
+/* 버튼 이벤트 */
+
+function cute(){
+    alert("오늘도 귀여움 MAX 🌸🐣💖");
+}
+
+/* 벚꽃 생성 */
+
+function createSakura(){
+
+    const sakura=document.createElement("div");
+
+    sakura.classList.add("sakura");
+
+    sakura.innerHTML="🌸";
+
+    sakura.style.left=Math.random()*100+"vw";
+
+    sakura.style.animationDuration=(3+Math.random()*5)+"s";
+
+    sakura.style.fontSize=(15+Math.random()*20)+"px";
+
+    document.body.appendChild(sakura);
+
+    setTimeout(()=>{
+        sakura.remove();
+    },8000);
+
+}
+
+setInterval(createSakura,300);
+
+</script>
+
+</body>
 </html>
