@@ -2,91 +2,83 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>귀염뽀짝 산리오 감성</title>
+<title>귀염뽀짝 월드 🐰</title>
 
 <style>
 
 body{
-    margin:0;
-    height:100vh;
-    overflow:hidden;
-    font-family: "Arial", sans-serif;
-    background: linear-gradient(180deg,#ffddee,#fff4f8);
-    display:flex;
-    justify-content:center;
-    align-items:center;
+margin:0;
+overflow:hidden;
+height:100vh;
+background:linear-gradient(180deg,#ffddee,#fff5fa);
+font-family:Arial;
 }
 
 /* 카드 */
 
 .card{
-    position:relative;
-    background:white;
-    padding:40px;
-    border-radius:30px;
-    text-align:center;
-    width:320px;
-    box-shadow:0 15px 30px rgba(255,150,180,0.3);
-    z-index:2;
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:white;
+padding:40px;
+border-radius:30px;
+text-align:center;
+width:320px;
+box-shadow:0 20px 40px rgba(255,150,180,0.3);
+z-index:5;
 }
 
 .title{
-    font-size:30px;
-    color:#ff6fa5;
-    font-weight:bold;
+font-size:28px;
+color:#ff6fa5;
+font-weight:bold;
 }
 
 .subtitle{
-    margin-top:10px;
-    color:#888;
+color:#777;
+margin-top:10px;
 }
 
-/* 귀여운 버튼 */
-
 button{
-    margin-top:25px;
-    background:#ff9fc4;
-    border:none;
-    padding:12px 25px;
-    border-radius:50px;
-    font-size:16px;
-    color:white;
-    cursor:pointer;
-    box-shadow:0 5px 15px rgba(255,150,180,0.4);
-    transition:all .2s;
+margin-top:20px;
+background:#ff9fc4;
+border:none;
+padding:12px 25px;
+border-radius:40px;
+font-size:16px;
+color:white;
+cursor:pointer;
+transition:.2s;
 }
 
 button:hover{
-    transform:scale(1.1);
-    background:#ff7fb2;
-}
-
-/* 캐릭터 */
-
-.character{
-    font-size:55px;
-    animation:bounce 2s infinite;
-}
-
-@keyframes bounce{
-    0%,100%{transform:translateY(0)}
-    50%{transform:translateY(-10px)}
+transform:scale(1.1);
+background:#ff7fb2;
 }
 
 /* 벚꽃 */
 
 .sakura{
-    position:fixed;
-    top:-10px;
-    font-size:20px;
-    animation:fall linear forwards;
+position:fixed;
+top:-10px;
+font-size:20px;
+animation:fall linear forwards;
 }
 
 @keyframes fall{
-    to{
-        transform:translateY(110vh) rotate(360deg);
-        opacity:0.8;
-    }
+to{
+transform:translateY(110vh) rotate(360deg);
+}
+}
+
+/* 토끼 */
+
+.bunny{
+position:fixed;
+font-size:40px;
+pointer-events:none;
 }
 
 </style>
@@ -96,51 +88,84 @@ button:hover{
 
 <div class="card">
 
-<div class="character">🐰🎀</div>
+<div style="font-size:55px;">🐰🎀</div>
 
 <div class="title">귀염뽀짝 월드</div>
 
-<div class="subtitle">
-오늘도 행복한 하루 💗
-</div>
+<div class="subtitle">오늘도 행복 MAX 💗</div>
 
-<button onclick="cute()">눌러봐!</button>
+<button onclick="hello()">눌러봐!</button>
 
 </div>
 
 <script>
 
-/* 버튼 이벤트 */
+/* 버튼 */
 
-function cute(){
-    alert("오늘도 귀여움 MAX 🌸🐣💖");
+function hello(){
+alert("귀여움 충전 완료 🐰💖");
 }
 
-/* 벚꽃 생성 */
+/* 벚꽃 */
 
 function createSakura(){
 
-    const sakura=document.createElement("div");
+const sakura=document.createElement("div");
+sakura.className="sakura";
+sakura.innerHTML="🌸";
 
-    sakura.classList.add("sakura");
+sakura.style.left=Math.random()*100+"vw";
+sakura.style.animationDuration=(4+Math.random()*4)+"s";
+sakura.style.fontSize=(15+Math.random()*20)+"px";
 
-    sakura.innerHTML="🌸";
+document.body.appendChild(sakura);
 
-    sakura.style.left=Math.random()*100+"vw";
-
-    sakura.style.animationDuration=(3+Math.random()*5)+"s";
-
-    sakura.style.fontSize=(15+Math.random()*20)+"px";
-
-    document.body.appendChild(sakura);
-
-    setTimeout(()=>{
-        sakura.remove();
-    },8000);
+setTimeout(()=>sakura.remove(),8000);
 
 }
 
-setInterval(createSakura,300);
+setInterval(createSakura,250);
+
+
+/* 토끼 생성 */
+
+function createBunny(){
+
+const bunny=document.createElement("div");
+bunny.className="bunny";
+bunny.innerHTML="🐰";
+
+document.body.appendChild(bunny);
+
+let x=Math.random()*window.innerWidth;
+let y=Math.random()*window.innerHeight;
+
+bunny.style.left=x+"px";
+bunny.style.top=y+"px";
+
+function move(){
+
+x+= (Math.random()-0.5)*200;
+y+= (Math.random()-0.5)*200;
+
+x=Math.max(0,Math.min(window.innerWidth,x));
+y=Math.max(0,Math.min(window.innerHeight,y));
+
+bunny.style.transition="2s linear";
+bunny.style.left=x+"px";
+bunny.style.top=y+"px";
+
+}
+
+setInterval(move,2000);
+
+}
+
+/* 여러 마리 생성 */
+
+for(let i=0;i<8;i++){
+createBunny();
+}
 
 </script>
 
