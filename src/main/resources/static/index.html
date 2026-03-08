@@ -2,74 +2,146 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>귀염뽀짝 페이지</title>
+<title>귀염뽀짝 산리오 감성</title>
+
 <style>
-body {
-    background: linear-gradient(135deg, #ffd6e7, #ffeef5);
+
+body{
+    margin:0;
+    height:100vh;
+    overflow:hidden;
     font-family: "Arial", sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
+    background: linear-gradient(180deg,#ffddee,#fff4f8);
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
-.card {
-    background: white;
-    border-radius: 20px;
-    padding: 40px;
-    text-align: center;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    width: 300px;
+/* 카드 */
+
+.card{
+    position:relative;
+    background:white;
+    padding:40px;
+    border-radius:30px;
+    text-align:center;
+    width:320px;
+    box-shadow:0 15px 30px rgba(255,150,180,0.3);
+    z-index:2;
 }
 
-.title {
-    font-size: 28px;
-    color: #ff6fa5;
-    margin-bottom: 10px;
+.title{
+    font-size:30px;
+    color:#ff6fa5;
+    font-weight:bold;
 }
 
-.subtitle {
-    color: #777;
-    margin-bottom: 25px;
+.subtitle{
+    margin-top:10px;
+    color:#888;
 }
 
-button {
-    background: #ff8fb1;
-    border: none;
-    color: white;
-    padding: 12px 20px;
-    border-radius: 30px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.2s;
+/* 귀여운 버튼 */
+
+button{
+    margin-top:25px;
+    background:#ff9fc4;
+    border:none;
+    padding:12px 25px;
+    border-radius:50px;
+    font-size:16px;
+    color:white;
+    cursor:pointer;
+    box-shadow:0 5px 15px rgba(255,150,180,0.4);
+    transition:all .2s;
 }
 
-button:hover {
-    background: #ff6fa5;
-    transform: scale(1.05);
+button:hover{
+    transform:scale(1.1);
+    background:#ff7fb2;
 }
 
-.emoji {
-    font-size: 40px;
-    margin-bottom: 10px;
+/* 캐릭터 */
+
+.character{
+    font-size:55px;
+    animation:bounce 2s infinite;
 }
+
+@keyframes bounce{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-10px)}
+}
+
+/* 벚꽃 */
+
+.sakura{
+    position:fixed;
+    top:-10px;
+    font-size:20px;
+    animation:fall linear forwards;
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(110vh) rotate(360deg);
+        opacity:0.8;
+    }
+}
+
 </style>
 </head>
 
 <body>
 
 <div class="card">
-    <div class="emoji">🐰💖</div>
-    <div class="title">귀염뽀짝!</div>
-    <div class="subtitle">오늘도 좋은 하루 보내세요 ✨</div>
-    <button onclick="hello()">눌러보세요!</button>
+
+<div class="character">🐰🎀</div>
+
+<div class="title">귀염뽀짝 월드</div>
+
+<div class="subtitle">
+오늘도 행복한 하루 💗
+</div>
+
+<button onclick="cute()">눌러봐!</button>
+
 </div>
 
 <script>
-function hello(){
-    alert("귀여운 하루 되세요! 🐣💕");
+
+/* 버튼 이벤트 */
+
+function cute(){
+    alert("오늘도 귀여움 MAX 🌸🐣💖");
 }
+
+/* 벚꽃 생성 */
+
+function createSakura(){
+
+    const sakura=document.createElement("div");
+
+    sakura.classList.add("sakura");
+
+    sakura.innerHTML="🌸";
+
+    sakura.style.left=Math.random()*100+"vw";
+
+    sakura.style.animationDuration=(3+Math.random()*5)+"s";
+
+    sakura.style.fontSize=(15+Math.random()*20)+"px";
+
+    document.body.appendChild(sakura);
+
+    setTimeout(()=>{
+        sakura.remove();
+    },8000);
+
+}
+
+setInterval(createSakura,300);
+
 </script>
 
 </body>
