@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>귀염뽀짝 월드 🐰</title>
+<title>귀염뽀짝 월드</title>
 
 <style>
 
@@ -11,7 +11,6 @@ margin:0;
 overflow:hidden;
 height:100vh;
 background:linear-gradient(180deg,#ffddee,#fff5fa);
-font-family:Arial;
 }
 
 /* 카드 */
@@ -27,57 +26,14 @@ border-radius:30px;
 text-align:center;
 width:320px;
 box-shadow:0 20px 40px rgba(255,150,180,0.3);
-z-index:5;
+z-index:10;
 }
 
-.title{
-font-size:28px;
-color:#ff6fa5;
-font-weight:bold;
-}
-
-.subtitle{
-color:#777;
-margin-top:10px;
-}
-
-button{
-margin-top:20px;
-background:#ff9fc4;
-border:none;
-padding:12px 25px;
-border-radius:40px;
-font-size:16px;
-color:white;
-cursor:pointer;
-transition:.2s;
-}
-
-button:hover{
-transform:scale(1.1);
-background:#ff7fb2;
-}
-
-/* 벚꽃 */
-
-.sakura{
-position:fixed;
-top:-10px;
-font-size:20px;
-animation:fall linear forwards;
-}
-
-@keyframes fall{
-to{
-transform:translateY(110vh) rotate(360deg);
-}
-}
-
-/* 토끼 */
+/* 토끼 이미지 */
 
 .bunny{
 position:fixed;
-font-size:40px;
+width:80px;
 pointer-events:none;
 }
 
@@ -88,52 +44,35 @@ pointer-events:none;
 
 <div class="card">
 
-<div style="font-size:55px;">🐰🎀</div>
-
-<div class="title">귀염뽀짝 월드</div>
-
-<div class="subtitle">오늘도 행복 MAX 💗</div>
-
-<button onclick="hello()">눌러봐!</button>
+<h2 style="color:#ff6fa5">귀염뽀짝 월드 🎀</h2>
+<p>오늘도 행복한 하루 💗</p>
 
 </div>
 
 <script>
 
-/* 버튼 */
+/* 넣고 싶은 사진 목록 */
 
-function hello(){
-alert("귀여움 충전 완료 🐰💖");
-}
-
-/* 벚꽃 */
-
-function createSakura(){
-
-const sakura=document.createElement("div");
-sakura.className="sakura";
-sakura.innerHTML="🌸";
-
-sakura.style.left=Math.random()*100+"vw";
-sakura.style.animationDuration=(4+Math.random()*4)+"s";
-sakura.style.fontSize=(15+Math.random()*20)+"px";
-
-document.body.appendChild(sakura);
-
-setTimeout(()=>sakura.remove(),8000);
-
-}
-
-setInterval(createSakura,250);
+const bunnyImages = [
+"bunny1.png",
+"bunny3.png",
+"bunny4.png",
+"bunny5.png",
+"bunny6.png",
+"bunny7.png",
+"bunny8.png"
+];
 
 
 /* 토끼 생성 */
 
-function createBunny(){
+function createBunny(imgSrc){
 
-const bunny=document.createElement("div");
+const bunny=document.createElement("img");
+
 bunny.className="bunny";
-bunny.innerHTML="🐰";
+
+bunny.src=imgSrc;
 
 document.body.appendChild(bunny);
 
@@ -148,8 +87,8 @@ function move(){
 x+= (Math.random()-0.5)*200;
 y+= (Math.random()-0.5)*200;
 
-x=Math.max(0,Math.min(window.innerWidth,x));
-y=Math.max(0,Math.min(window.innerHeight,y));
+x=Math.max(0,Math.min(window.innerWidth-80,x));
+y=Math.max(0,Math.min(window.innerHeight-80,y));
 
 bunny.style.transition="2s linear";
 bunny.style.left=x+"px";
@@ -161,11 +100,11 @@ setInterval(move,2000);
 
 }
 
-/* 여러 마리 생성 */
+/* 사진 수만큼 생성 */
 
-for(let i=0;i<8;i++){
-createBunny();
-}
+bunnyImages.forEach(img=>{
+createBunny(img);
+});
 
 </script>
 
